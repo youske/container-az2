@@ -1,0 +1,14 @@
+FROM amazonlinux:2
+RUN yum install -y sudo tar git wget curl less gawk cronie procps-ng && \
+    adduser admin && echo "%admin ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/admin \
+    adduser appuser && echo "%appuser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/appuser
+
+## confd
+RUN mkdir -p /etc/confd/{conf.d,templates} && \
+    wget https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64 -O /usr/local/bin/confd && \
+    chmod +x /usr/local/bin/confd 
+
+COPY *.toml /etc/confd/conf.d/
+COPY *.tmpl /etc/confd/templates/
+
+USER admin

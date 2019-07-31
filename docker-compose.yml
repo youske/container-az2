@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+  az2:
+    container_name: az2
+    build:
+      context: .
+      dockerfile: Dockerfile.az2
+    environment:
+      - "TZ=Asia/Tokyo"
+      - "TEST_ENV=1"
+    command: confd -backend env
+    volumes:
+      - "workdir:/work"
+    networks:
+      - default
+
+volumes:
+  workdir:
+    driver_opts:
+      type: none
+      device: /c/volumes/work
+      o: bind
