@@ -12,6 +12,7 @@ services:
       - "workdir:/work:rw"
     networks:
       - default
+      - development
 
 volumes:
   workdir:
@@ -19,3 +20,7 @@ volumes:
       type: none
       device: /c/Users/$USERNAME/volumes/work
       o: bind
+
+networks:
+  development:
+    external: true

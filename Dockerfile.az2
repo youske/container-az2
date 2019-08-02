@@ -1,6 +1,7 @@
 FROM amazonlinux:2
-RUN yum install -y sudo tar git wget curl less gawk cronie procps-ng jq ctags \
-    gcc make automake autoconf zlib-devel libffi-devel openssl-devel bzip2-devel readline-devel sqlite-devel && \
+RUN yum install -y sudo tar git wget curl less gawk cronie procps-ng jq ctags unzip bzip2 zip pigz \
+    bind-utils traceroute lsof tmpwatch diffutils nc \
+    gcc make automake autoconf zlib-devel libffi-devel openssl-devel bzip2-devel readline-devel python-devel sqlite-devel && \
     groupadd appcreators && groupadd appadmin
 
 ## confd
